@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:b6888c343311916225dcb1e49af2c2b5$ -->
+<!-- $TexturePacker:SmartUpdate:c549f3e3b20df4e381e5296ba1831682$ -->
 <TextureAtlas imagePath="tiles.png">
     <SubTexture name="B_1_B" x="2" y="2" width="16" height="16"/>
     <SubTexture name="B_1_L" x="20" y="2" width="16" height="16"/>
@@ -124,5 +124,13 @@
     <SubTexture name="selection_bg" x="708" y="474" width="150" height="200"/>
     <SubTexture name="temp_player" x="860" y="474" width="16" height="24"/>
     <SubTexture name="testMap" x="878" y="474" width="1024" height="1024"/>
-    <SubTexture name="white_pixel" x="1904" y="474" width="1" height="1"/>
+    <SubTexture name="units/deadBody16x16.fw" x="2" y="1500" width="700" height="500"/>
+    <SubTexture name="units/humans/U_H_Construction" x="704" y="1500" width="16" height="13"/>
+    <SubTexture name="units/humans/U_H_Farmer" x="722" y="1500" width="16" height="13"/>
+    <SubTexture name="units/humans/U_H_Football" x="740" y="1500" width="16" height="13"/>
+    <SubTexture name="units/humans/U_H_Mechanic" x="758" y="1500" width="16" height="13"/>
+    <SubTexture name="units/humans/U_H_Runner" x="776" y="1500" width="16" height="12"/>
+    <SubTexture name="units/humans/U_H_Soldier" x="794" y="1500" width="16" height="13"/>
+    <SubTexture name="units/zombies/U_Z_standard" x="812" y="1500" width="16" height="13"/>
+    <SubTexture name="white_pixel" x="830" y="1500" width="1" height="1"/>
 </TextureAtlas>

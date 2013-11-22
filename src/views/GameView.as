@@ -25,12 +25,21 @@ package views
 	
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.utils.deg2rad;
+	import starling.utils.rad2deg;
 	
 	public class GameView extends Sprite implements IUpdateable
 	{
 		//====================================
 		// CONSTANTS
 		//====================================
+		// Game logic constants
+		public static const DIR_UP:int = 0;
+		public static const DIR_RIGHT:int = 1;
+		public static const DIR_BOTTOM:int = 2;
+		public static const DIR_LEFT:int = 3;
+		
+		
 		//Click/selection
 		public static var CLICKED_NOTHING:int = 0;
 		public static var CLICKED_NEW_ENTITY:int = 1;
@@ -258,7 +267,27 @@ package views
 			{
 				Log.out("next node!");
 				var currNode:Point = currMovingEntity.movePath[currMovingEntity.movePath.length-1];
-				TweenLite.to(currMovingEntity, .1, {x:currNode.x, y:currNode.y, ease:Linear.easeNone, onComplete:updateEntityMovement});
+				
+				//Tween the rotation too
+				var direction:int = getRotationBetweenPoints(currMovingEntity.getPositionPoint(), currNode);
+				var eRotation:Number;
+				
+				switch (direction)
+				{
+					case DIR_UP:
+						eRotation = deg2rad(0);
+						break;
+					case DIR_RIGHT:
+						eRotation = deg2rad(90);
+						break;
+					case DIR_BOTTOM:
+						eRotation = deg2rad(180);
+						break;
+					case DIR_LEFT:
+						eRotation = deg2rad(270);
+						break;
+				}
+				TweenLite.to(currMovingEntity, .1, {x:currNode.x, y:currNode.y, rotation:eRotation, ease:Linear.easeNone, onComplete:updateEntityMovement});
 				currMovingEntity.movePath.splice(currMovingEntity.movePath.length-1,1);
 			}
 			else
@@ -268,7 +297,35 @@ package views
 //				currAction = A_NOTHING;
 			}
 		}
-				
+		
+		private function getRotationBetweenPoints(basePoint:Point, nextPoint:Point):int
+		{
+			//Up or down
+			if (Math.abs(basePoint.x - nextPoint.x) < 5)
+			{
+				if (basePoint.y < nextPoint.y)
+				{
+					return DIR_BOTTOM;
+				}
+				else
+				{
+					return DIR_UP;
+				}
+			}
+			else if (Math.abs(basePoint.y - nextPoint.y) < 5)
+			{
+				if (basePoint.x < nextPoint.x)
+				{
+					return DIR_RIGHT;
+				}
+				else
+				{
+					return DIR_LEFT;
+				}
+			}
+			
+			return DIR_UP;
+		}				
 		
 		private function checkKeyboard():void
 		{

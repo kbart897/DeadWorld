@@ -1,5 +1,7 @@
 package game.entities
 {
+	import flash.geom.Point;
+	
 	import game.tiles.L_Tile;
 	import game.tiles.V_Tile;
 	
@@ -43,6 +45,11 @@ package game.entities
 			
 		}
 
+		public function getPositionPoint():Point
+		{
+			return new Point(x, y);
+		}
+		
 		public function get prevTile():L_Tile
 		{
 			return _prevTile;

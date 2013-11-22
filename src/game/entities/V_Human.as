@@ -9,7 +9,15 @@ package game.entities
 	
 	public class V_Human extends Sprite
 	{
-		public static var DISPLAY_SPRITE:String = "temp_player";
+		
+		public static var S_FARMER:String = "units/humans/U_H_Farmer";
+		public static var S_CONSTRUCTION:String = "units/humans/U_H_Construction";
+		public static var S_FOOTBALL:String = "units/humans/U_H_Football";
+		public static var S_MECHANIC:String = "units/humans/U_H_Mechanic";
+		public static var S_RUNNER:String = "units/humans/U_H_Runner";
+		public static var S_SOLDIER:String = "units/humans/U_H_Soldier";
+		
+		private var displaySprite:String = "";
 		private var _l_human:L_Human;
 		private var _image:Image;
 		
@@ -17,6 +25,33 @@ package game.entities
 		{
 			super();
 			_l_human = l_component;
+			Log.out("NEW HUMAN ENTITY");
+			//Set the display type
+			var type:int = Math.ceil(Math.random()*6);
+			
+			switch (type)
+			{
+				case 1:
+					displaySprite = S_FARMER;
+					break;
+				case 2:
+					displaySprite = S_CONSTRUCTION;
+					break;
+				case 3:
+					displaySprite = S_FOOTBALL;
+					break;
+				case 4:
+					displaySprite = S_MECHANIC;
+					break;
+				case 5:
+					displaySprite = S_RUNNER;
+					break;
+				case 6:
+					displaySprite = S_SOLDIER;
+					break;
+			}
+			
+			displaySprite = S_FARMER;
 			wake(true);
 		}
 		
@@ -47,7 +82,7 @@ package game.entities
 			{
 				if (!image)
 				{
-					image = new Image(Assets.getAtlas().getTexture(DISPLAY_SPRITE));
+					image = new Image(Assets.getAtlas().getTexture(displaySprite));
 					addChild(image);
 					trace("image added!");
 					image.y -= image.height/2;
